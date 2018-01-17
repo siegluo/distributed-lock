@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>cn.roger</groupId>
+    <groupId>com.github.rogerjobluo</groupId>
     <artifactId>distributed-lock</artifactId>
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
@@ -20,27 +20,52 @@
         <java.target.version>1.7</java.target.version>
         <project.encoding>UTF-8</project.encoding>
 
-        <repo.internal.snapshots.url>file:///home/ks/.m2/repository/
+        <repo.internal.snapshots.url>https://oss.sonatype.org/content/repositories/snapshots/
         </repo.internal.snapshots.url>
-        <repo.internal.releases.url>file:///home/ks/.m2/repository/
+        <repo.internal.releases.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/
         </repo.internal.releases.url>
         <repo.proxy.url>http://repo1.maven.org/maven2</repo.proxy.url>
 
         <repo.external.url>http://repo1.maven.org/maven2</repo.external.url>
 
     </properties>
+    <name>${project.groupId}:${project.artifactId}</name>
+    <url>https://github.com/rogerjobluo/distributed-lock</url>
+    <description></description>
 
+    <licenses>
+        <license>
+            <name>The Apache License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+        </license>
+    </licenses>
+    <developers>
+        <developer>
+            <name>rogerjobluo</name>
+            <email>1357852347@qq.com</email>
+            <roles>
+                <role>developer</role>
+            </roles>
+            <timezone>+8</timezone>
+        </developer>
+    </developers>
+    <scm>
+        <connection>scm:git:https://github.com/rogerjobluo/distributed-lock.git</connection>
+        <developerConnection>scm:git:https://github.com/rogerjobluo/distributed-lock.git</developerConnection>
+        <url>https://github.com/rogerjobluo/distributed-lock</url>
+        <tag>v${project.version}</tag>
+    </scm>
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>cn.roger</groupId>
-                <artifactId>tcc-transaction-api</artifactId>
+                <groupId>com.github.rogerjobluo</groupId>
+                <artifactId>distributed-lock-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
             <dependency>
-                <groupId>cn.roger</groupId>
-                <artifactId>tcc-transaction-core</artifactId>
+                <groupId>com.github.rogerjobluo</groupId>
+                <artifactId>distributed-lock-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -295,7 +320,7 @@
 
     <repositories>
         <repository>
-            <id>tcc-transaction-internal-snapshots</id>
+            <id>distributed-lock-internal-snapshots</id>
             <name>internal repository for snapshots artifacts</name>
             <url>${repo.internal.snapshots.url}</url>
             <snapshots>
@@ -306,7 +331,7 @@
             </releases>
         </repository>
         <repository>
-            <id>tcc-transaction-internal-releases</id>
+            <id>distributed-lock-internal-releases</id>
             <name>internal repository for released artifacts</name>
             <url>${repo.internal.releases.url}</url>
             <snapshots>
@@ -318,7 +343,7 @@
         </repository>
         <!-- no snapshot allowed for external repositories! -->
         <repository>
-            <id>tcc-transaction-third-party</id>
+            <id>distributed-lock-third-party</id>
             <name>cache server for external repositories</name>
             <url>${repo.external.url}</url>
             <snapshots>
@@ -336,7 +361,7 @@
     </repositories>
     <pluginRepositories>
         <pluginRepository>
-            <id>tcc-transaction-internal-snapshots</id>
+            <id>distributed-lock-internal-snapshots</id>
             <name>internal repository for snapshots artifacts</name>
             <url>${repo.internal.snapshots.url}</url>
             <snapshots>
@@ -347,7 +372,7 @@
             </releases>
         </pluginRepository>
         <pluginRepository>
-            <id>tcc-transaction-internal-releases</id>
+            <id>distributed-lock-internal-releases</id>
             <name>internal repository for released artifacts</name>
             <url>${repo.internal.releases.url}</url>
             <snapshots>
@@ -359,7 +384,7 @@
         </pluginRepository>
         <!-- no snapshot allowed for external repositories -->
         <pluginRepository>
-            <id>tcc-transaction-central-cache</id>
+            <id>distributed-lock-central-cache</id>
             <name>cache to external repositories</name>
             <url>${repo.external.url}</url>
             <snapshots>
@@ -442,6 +467,46 @@
                     <updateReleaseInfo>true</updateReleaseInfo>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
         </plugins>
 
     </build>
