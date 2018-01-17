@@ -319,97 +319,99 @@
     </dependencyManagement>
 
     <!--<repositories>-->
-        <!--<repository>-->
-            <!--<id>distributed-lock-internal-snapshots</id>-->
-            <!--<name>internal repository for snapshots artifacts</name>-->
-            <!--<url>${repo.internal.snapshots.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>true</enabled>-->
-            <!--</snapshots>-->
-            <!--<releases>-->
-                <!--<enabled>false</enabled>-->
-            <!--</releases>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>distributed-lock-internal-releases</id>-->
-            <!--<name>internal repository for released artifacts</name>-->
-            <!--<url>${repo.internal.releases.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-        <!--</repository>-->
-        <!--&lt;!&ndash; no snapshot allowed for external repositories! &ndash;&gt;-->
-        <!--<repository>-->
-            <!--<id>distributed-lock-third-party</id>-->
-            <!--<name>cache server for external repositories</name>-->
-            <!--<url>${repo.external.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</repository>-->
-        <!--<repository>-->
-            <!--<id>central</id>-->
-            <!--<name>proxy server for external repositories</name>-->
-            <!--<url>${repo.proxy.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>distributed-lock-internal-snapshots</id>-->
+    <!--<name>internal repository for snapshots artifacts</name>-->
+    <!--<url>${repo.internal.snapshots.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>true</enabled>-->
+    <!--</snapshots>-->
+    <!--<releases>-->
+    <!--<enabled>false</enabled>-->
+    <!--</releases>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>distributed-lock-internal-releases</id>-->
+    <!--<name>internal repository for released artifacts</name>-->
+    <!--<url>${repo.internal.releases.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--</repository>-->
+    <!--&lt;!&ndash; no snapshot allowed for external repositories! &ndash;&gt;-->
+    <!--<repository>-->
+    <!--<id>distributed-lock-third-party</id>-->
+    <!--<name>cache server for external repositories</name>-->
+    <!--<url>${repo.external.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--</repository>-->
+    <!--<repository>-->
+    <!--<id>central</id>-->
+    <!--<name>proxy server for external repositories</name>-->
+    <!--<url>${repo.proxy.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--</repository>-->
     <!--</repositories>-->
     <!--<pluginRepositories>-->
-        <!--<pluginRepository>-->
-            <!--<id>distributed-lock-internal-snapshots</id>-->
-            <!--<name>internal repository for snapshots artifacts</name>-->
-            <!--<url>${repo.internal.snapshots.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>true</enabled>-->
-            <!--</snapshots>-->
-            <!--<releases>-->
-                <!--<enabled>false</enabled>-->
-            <!--</releases>-->
-        <!--</pluginRepository>-->
-        <!--<pluginRepository>-->
-            <!--<id>distributed-lock-internal-releases</id>-->
-            <!--<name>internal repository for released artifacts</name>-->
-            <!--<url>${repo.internal.releases.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-            <!--<releases>-->
-                <!--<enabled>true</enabled>-->
-            <!--</releases>-->
-        <!--</pluginRepository>-->
-        <!--&lt;!&ndash; no snapshot allowed for external repositories &ndash;&gt;-->
-        <!--<pluginRepository>-->
-            <!--<id>distributed-lock-central-cache</id>-->
-            <!--<name>cache to external repositories</name>-->
-            <!--<url>${repo.external.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</pluginRepository>-->
-        <!--<pluginRepository>-->
-            <!--<id>central</id>-->
-            <!--<name>Platform proxy to external repositories</name>-->
-            <!--<url>${repo.proxy.url}</url>-->
-            <!--<snapshots>-->
-                <!--<enabled>false</enabled>-->
-            <!--</snapshots>-->
-        <!--</pluginRepository>-->
+    <!--<pluginRepository>-->
+    <!--<id>distributed-lock-internal-snapshots</id>-->
+    <!--<name>internal repository for snapshots artifacts</name>-->
+    <!--<url>${repo.internal.snapshots.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>true</enabled>-->
+    <!--</snapshots>-->
+    <!--<releases>-->
+    <!--<enabled>false</enabled>-->
+    <!--</releases>-->
+    <!--</pluginRepository>-->
+    <!--<pluginRepository>-->
+    <!--<id>distributed-lock-internal-releases</id>-->
+    <!--<name>internal repository for released artifacts</name>-->
+    <!--<url>${repo.internal.releases.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--<releases>-->
+    <!--<enabled>true</enabled>-->
+    <!--</releases>-->
+    <!--</pluginRepository>-->
+    <!--&lt;!&ndash; no snapshot allowed for external repositories &ndash;&gt;-->
+    <!--<pluginRepository>-->
+    <!--<id>distributed-lock-central-cache</id>-->
+    <!--<name>cache to external repositories</name>-->
+    <!--<url>${repo.external.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--</pluginRepository>-->
+    <!--<pluginRepository>-->
+    <!--<id>central</id>-->
+    <!--<name>Platform proxy to external repositories</name>-->
+    <!--<url>${repo.proxy.url}</url>-->
+    <!--<snapshots>-->
+    <!--<enabled>false</enabled>-->
+    <!--</snapshots>-->
+    <!--</pluginRepository>-->
     <!--</pluginRepositories>-->
     <distributionManagement>
-        <snapshotRepository>
-            <id>ossrh</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
         <repository>
-            <id>ossrh</id>
+            <id>com.github.rogerjobluo</id>
             <name>Maven Central Staging Repository</name>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
+
+        <snapshotRepository>
+            <id>com.github.rogerjobluo</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+
     </distributionManagement>
     <build>
         <resources>
@@ -431,7 +433,7 @@
                 <version>1.6.3</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <serverId>ossrh</serverId>
+                    <serverId>com.github.rogerjobluo</serverId>
                     <nexusUrl>https://oss.sonatype.org/</nexusUrl>
                     <autoReleaseAfterClose>true</autoReleaseAfterClose>
                 </configuration>
@@ -533,16 +535,16 @@
     </build>
 
     <!--<distributionManagement>-->
-        <!--<repository>-->
-            <!--<id>repo.releases</id>-->
-            <!--<name>internal corporate repository</name>-->
-            <!--<url>${repo.internal.releases.url}</url>-->
-        <!--</repository>-->
-        <!--<snapshotRepository>-->
-            <!--<id>repo.snapshots</id>-->
-            <!--<name>internal corporate snapshots repository</name>-->
-            <!--<url>${repo.internal.snapshots.url}</url>-->
-        <!--</snapshotRepository>-->
+    <!--<repository>-->
+    <!--<id>repo.releases</id>-->
+    <!--<name>internal corporate repository</name>-->
+    <!--<url>${repo.internal.releases.url}</url>-->
+    <!--</repository>-->
+    <!--<snapshotRepository>-->
+    <!--<id>repo.snapshots</id>-->
+    <!--<name>internal corporate snapshots repository</name>-->
+    <!--<url>${repo.internal.snapshots.url}</url>-->
+    <!--</snapshotRepository>-->
     <!--</distributionManagement>-->
 
 
