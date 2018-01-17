@@ -86,4 +86,8 @@ public class DisLockInterceptor {
         }
         return null;
     }
+
+    public void setLockRegistry(LockRegistry lockRegistry) {
+        this.lockRegistry = lockRegistry;
+    }
 }
