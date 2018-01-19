@@ -47,7 +47,7 @@ public class DisLockInterceptor {
         String methodName = DisLockUtils.getDisLockMethod(pjp).getName();
         String className = pjp.getTarget().getClass().getName();
         //TODO
-        String path = "/root" + "/" + className + "/" + methodName;
+        String path = "root" + "/" + className + "/" + methodName;
         lockAndExec(path, 1000, pjp);
         return pjp.proceed();
     }

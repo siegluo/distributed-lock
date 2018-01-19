@@ -1,5 +1,7 @@
 package cn.roger.distributed.lock.core.repository;
 
+import java.util.concurrent.locks.Lock;
+
 public interface DisLockRepository {
 
     /**
@@ -8,7 +10,15 @@ public interface DisLockRepository {
      * @param path path
      * @return 新增数量
      */
-    int create(String path);
+    Lock create(String path);
+
+    /**
+     * 新增path
+     *
+     * @param path path
+     * @return 新增数量
+     */
+    Lock create(String path, String s);
 
     /**
      * 更新事务
