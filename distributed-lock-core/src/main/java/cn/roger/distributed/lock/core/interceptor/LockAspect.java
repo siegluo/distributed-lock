@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class LockAspect {
 
-    private DisLockInterceptor disLockInterceptor;
+    private AbstractDisLockInterceptor disLockInterceptor;
 
     /**
      * 对DisLock注解进行aop，对切点加锁
@@ -36,7 +36,7 @@ public class LockAspect {
         return disLockInterceptor.interceptDisLockMethod(pjp);
     }
 
-    public void setDisLockInterceptor(DisLockInterceptor disLockInterceptor) {
+    public void setDisLockInterceptor(AbstractDisLockInterceptor disLockInterceptor) {
         this.disLockInterceptor = disLockInterceptor;
     }
 }

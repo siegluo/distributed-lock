@@ -1,29 +1,23 @@
 package cn.roger.distributed.lock.core.repository;
 
+import java.util.concurrent.locks.Lock;
+
 public interface DisLockRepository {
 
     /**
-     * 新增path
+     * 获得锁
      *
      * @param path path
-     * @return 新增数量
+     * @return 获得锁
      */
-    int create(String path);
+    Lock obtain(String path);
 
     /**
-     * 更新事务
+     * 释放锁
      *
-     * @param path 事务
-     * @return 更新数量
+     * @param lock 事务
+     * @return 释放锁
      */
-    int update(String path);
-
-    /**
-     * 删除事务
-     *
-     * @param path 事务
-     * @return 删除数量
-     */
-    int delete(String path);
+    void unlock(Lock lock);
 
 }

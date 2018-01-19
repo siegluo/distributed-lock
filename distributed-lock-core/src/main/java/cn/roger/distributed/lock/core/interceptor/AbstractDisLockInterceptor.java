@@ -2,23 +2,22 @@ package cn.roger.distributed.lock.core.interceptor;
 
 import cn.roger.distributed.lock.api.DisLock;
 import cn.roger.distributed.lock.api.LockTypeEnum;
+import cn.roger.distributed.lock.core.manager.DisLockConfigurater;
+import cn.roger.distributed.lock.core.manager.DisLockManager;
 import cn.roger.distributed.lock.core.utils.DisLockUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.springframework.integration.support.locks.LockRegistry;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.logging.Logger;
 
-public class DisLockInterceptor {
+public abstract class AbstractDisLockInterceptor {
 
-    static final Logger logger = Logger.getLogger(DisLockInterceptor.class.getSimpleName());
+    static final Logger logger = Logger.getLogger(AbstractDisLockInterceptor.class.getSimpleName());
 
-    //TODO
-//    private DisLockManager disLockManager;
+    private DisLockConfigurater disLockConfigurater;
 
-    private LockRegistry lockRegistry;
 
     public Object interceptDisLockMethod(ProceedingJoinPoint pjp) throws Throwable {
 
@@ -43,12 +42,11 @@ public class DisLockInterceptor {
     }
 
     public Object methodProceed(ProceedingJoinPoint pjp) throws Throwable {
-
         String methodName = DisLockUtils.getDisLockMethod(pjp).getName();
         String className = pjp.getTarget().getClass().getName();
-        //TODO
-        String path = "/root" + "/" + className + "/" + methodName;
-        lockAndExec(path, 1000, pjp);
+        String path = className + methodName;
+        long waitLockTime = disLockConfigurater.getDisLockConfig().getWaitLockTime();
+        lockAndExec(path, waitLockTime, pjp);
         return pjp.proceed();
     }
 
@@ -66,7 +64,8 @@ public class DisLockInterceptor {
 
     public Object lockAndExec(String lockKey, long waitLockTime, ProceedingJoinPoint pjp) {
         logger.info("加锁");
-        Lock lock = lockRegistry.obtain(lockKey);
+        DisLockManager disLockManager = disLockConfigurater.getDisLockManager();
+        Lock lock = disLockManager.getLock(lockKey);
         try {
             if (!lock.tryLock(waitLockTime, TimeUnit.MILLISECONDS)) {
                 logger.info("加锁失败，任务中止");
@@ -82,12 +81,12 @@ public class DisLockInterceptor {
         } catch (Throwable e) {
             logger.warning("执行任务时出现异常，将终止:" + e.getMessage());
         } finally {
-            lock.unlock();
+            disLockManager.unlock(lock);
         }
         return null;
     }
 
-    public void setLockRegistry(LockRegistry lockRegistry) {
-        this.lockRegistry = lockRegistry;
+    public DisLockConfigurater getDisLockConfigurater() {
+        return disLockConfigurater;
     }
 }
