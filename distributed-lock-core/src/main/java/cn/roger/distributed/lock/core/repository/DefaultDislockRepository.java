@@ -4,7 +4,7 @@ import org.springframework.integration.support.locks.LockRegistry;
 
 import java.util.concurrent.locks.Lock;
 
-public class DislockRepositoryImpl implements DisLockRepository {
+public class DefaultDislockRepository implements DisLockRepository {
 
     private LockRegistry lockRegistry;
 
@@ -30,6 +30,7 @@ public class DislockRepositoryImpl implements DisLockRepository {
         lock.unlock();
     }
 
+    @Override
     public void setLockRegistry(LockRegistry lockRegistry) {
         this.lockRegistry = lockRegistry;
     }

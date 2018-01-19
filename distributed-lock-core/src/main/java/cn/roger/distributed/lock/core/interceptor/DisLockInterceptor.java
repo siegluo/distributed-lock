@@ -6,15 +6,16 @@ import cn.roger.distributed.lock.core.manager.DisLockConfigurater;
 import cn.roger.distributed.lock.core.manager.DisLockManager;
 import cn.roger.distributed.lock.core.utils.DisLockUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Lock;
 import java.util.logging.Logger;
 
-public abstract class AbstractDisLockInterceptor {
+public class DisLockInterceptor {
 
-    static final Logger logger = Logger.getLogger(AbstractDisLockInterceptor.class.getSimpleName());
+    static final Logger logger = Logger.getLogger(DisLockInterceptor.class.getSimpleName());
 
     private DisLockConfigurater disLockConfigurater;
 
@@ -82,11 +83,22 @@ public abstract class AbstractDisLockInterceptor {
             logger.warning("执行任务时出现异常，将终止:" + e.getMessage());
         } finally {
             disLockManager.unlock(lock);
+            Method disLockMethod = DisLockUtils.getDisLockMethod(pjp);
+            DisLock disLock = disLockMethod.getAnnotation(DisLock.class);
+            String methodName = disLock.failMethod();
+            if (StringUtils.hasText(methodName)) {
+                try {
+                    Method method = pjp.getTarget().getClass().getMethod(methodName);
+                    method.invoke(pjp.getTarget().getClass(), DisLockUtils.getDisLockMethod(pjp).getParameterTypes());
+                } catch (Exception e) {
+                    e.getStackTrace();
+                }
+            }
         }
         return null;
     }
 
-    public DisLockConfigurater getDisLockConfigurater() {
-        return disLockConfigurater;
+    public void setDisLockConfigurater(DisLockConfigurater disLockConfigurater) {
+        this.disLockConfigurater = disLockConfigurater;
     }
 }

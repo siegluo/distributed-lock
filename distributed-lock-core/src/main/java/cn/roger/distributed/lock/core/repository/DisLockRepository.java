@@ -1,5 +1,7 @@
 package cn.roger.distributed.lock.core.repository;
 
+import org.springframework.integration.support.locks.LockRegistry;
+
 import java.util.concurrent.locks.Lock;
 
 public interface DisLockRepository {
@@ -20,4 +22,6 @@ public interface DisLockRepository {
      */
     void unlock(Lock lock);
 
+
+    void setLockRegistry(LockRegistry lockRegistry);
 }

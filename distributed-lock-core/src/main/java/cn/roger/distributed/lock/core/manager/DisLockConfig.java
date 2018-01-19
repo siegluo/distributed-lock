@@ -4,4 +4,5 @@ public interface DisLockConfig {
 
     long getWaitLockTime();
 
+    void setWaitLockTime(long waitLockTime);
 }
