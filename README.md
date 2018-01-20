@@ -37,7 +37,7 @@ compile('com.github.rogerjobluo:distributed-lock')
 
 配置
 
-由于初版目前依赖于spring-integrated的lockRegistry，所以需要使用spring-integrated关于lockRegistry的配置，
+由于初版目前依赖于spring-integrated的lockRegistry(计划后续版本优化)，所以需要使用spring-integrated关于lockRegistry的配置，
 额外的需要配置lockAspect disLockConfigurater springPostProcessor
 
 xml
