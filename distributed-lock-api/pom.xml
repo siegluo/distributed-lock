@@ -5,21 +5,10 @@
     <parent>
         <artifactId>distributed-lock</artifactId>
         <groupId>com.github.rogerjobluo</groupId>
-        <version>1.0.0</version>
+        <version>1.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>distributed-lock-api</artifactId>
-    <dependencies>
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.zookeeper</groupId>
-            <artifactId>zookeeper</artifactId>
-        </dependency>
-    </dependencies>
-
 
 </project>
