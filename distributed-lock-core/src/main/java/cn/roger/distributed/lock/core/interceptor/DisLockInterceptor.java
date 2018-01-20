@@ -2,11 +2,11 @@ package cn.roger.distributed.lock.core.interceptor;
 
 import cn.roger.distributed.lock.api.DisLock;
 import cn.roger.distributed.lock.api.LockTypeEnum;
+import cn.roger.distributed.lock.api.MethodTypeEnum;
 import cn.roger.distributed.lock.core.manager.DisLockConfigurater;
 import cn.roger.distributed.lock.core.manager.DisLockManager;
 import cn.roger.distributed.lock.core.utils.DisLockUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.util.concurrent.TimeUnit;
@@ -19,7 +19,12 @@ public class DisLockInterceptor {
 
     private DisLockConfigurater disLockConfigurater;
 
-
+    /**
+     * 拦截器拦截到注解后，主要执行的方法
+     *
+     * @author Roger
+     * @date 18-1-20 上午11:45
+     */
     public Object interceptDisLockMethod(ProceedingJoinPoint pjp) throws Throwable {
 
         //获得注解的type
@@ -42,6 +47,12 @@ public class DisLockInterceptor {
         }
     }
 
+    /**
+     * 为方法级别的锁时
+     *
+     * @author Roger
+     * @date 18-1-20 上午11:46
+     */
     public Object methodProceed(ProceedingJoinPoint pjp) throws Throwable {
         String methodName = DisLockUtils.getDisLockMethod(pjp).getName();
         String className = pjp.getTarget().getClass().getName();
@@ -63,6 +74,12 @@ public class DisLockInterceptor {
         return pjp.proceed();
     }
 
+    /**
+     * 获得锁，释放锁，目前使用的是spirng-integration中的zk锁
+     *
+     * @author Roger
+     * @date 18-1-20 上午11:46
+     */
     public Object lockAndExec(String lockKey, long waitLockTime, ProceedingJoinPoint pjp) {
         logger.info("加锁");
         DisLockManager disLockManager = disLockConfigurater.getDisLockManager();
@@ -70,6 +87,7 @@ public class DisLockInterceptor {
         try {
             if (!lock.tryLock(waitLockTime, TimeUnit.MILLISECONDS)) {
                 logger.info("加锁失败，任务中止");
+                DisLockUtils.invok(pjp, MethodTypeEnum.FAILMETHOD);
                 return null;
             }
         } catch (InterruptedException e) {
@@ -83,17 +101,7 @@ public class DisLockInterceptor {
             logger.warning("执行任务时出现异常，将终止:" + e.getMessage());
         } finally {
             disLockManager.unlock(lock);
-            Method disLockMethod = DisLockUtils.getDisLockMethod(pjp);
-            DisLock disLock = disLockMethod.getAnnotation(DisLock.class);
-            String methodName = disLock.failMethod();
-            if (StringUtils.hasText(methodName)) {
-                try {
-                    Method method = pjp.getTarget().getClass().getMethod(methodName);
-                    method.invoke(pjp.getTarget().getClass(), DisLockUtils.getDisLockMethod(pjp).getParameterTypes());
-                } catch (Exception e) {
-                    e.getStackTrace();
-                }
-            }
+            DisLockUtils.invok(pjp, MethodTypeEnum.FINSHEDMETHOD);
         }
         return null;
     }

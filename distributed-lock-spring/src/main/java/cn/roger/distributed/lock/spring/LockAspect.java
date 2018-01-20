@@ -8,6 +8,12 @@ public class LockAspect extends AbstractLockAspect {
 
     private DisLockConfigurater disLockConfigurater;
 
+    /**
+     * 初始化LockAspect
+     *
+     * @author Roger
+     * @date 18-1-20
+     */
     public void init() {
         DisLockInterceptor disLockInterceptor = new DisLockInterceptor();
         disLockInterceptor.setDisLockConfigurater(disLockConfigurater);

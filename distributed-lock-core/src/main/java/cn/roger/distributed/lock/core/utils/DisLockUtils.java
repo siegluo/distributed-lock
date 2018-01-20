@@ -1,14 +1,25 @@
 package cn.roger.distributed.lock.core.utils;
 
 import cn.roger.distributed.lock.api.DisLock;
+import cn.roger.distributed.lock.api.MethodTypeEnum;
+import cn.roger.distributed.lock.core.factory.FactoryBuilder;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.util.StringUtils;
 
 import java.lang.reflect.Method;
 import java.util.Random;
 
 public class DisLockUtils {
 
+    /**
+     * 获得Method
+     *
+     * @param pjp
+     * @return Method
+     * @author Roger
+     * @date 18-1-20 上午11:29
+     */
     public static Method getDisLockMethod(ProceedingJoinPoint pjp) {
         //代理方法
         Method method = ((MethodSignature) pjp.getSignature()).getMethod();
@@ -26,6 +37,9 @@ public class DisLockUtils {
 
     /**
      * 生成基于时间的随机码
+     *
+     * @author Roger
+     * @date 18-1-20 上午11:29
      */
     public static String getDateString() {
 
@@ -47,4 +61,33 @@ public class DisLockUtils {
         return String.valueOf(System.currentTimeMillis()) + pwd;
     }
 
+    /**
+     * @author Roger
+     * @date 18-1-20 上午11:29
+     */
+    public static void invok(ProceedingJoinPoint pjp, MethodTypeEnum methodTypeEnum) {
+        Method disLockMethod = DisLockUtils.getDisLockMethod(pjp);
+        DisLock disLock = disLockMethod.getAnnotation(DisLock.class);
+        String methodName = null;
+        switch (methodTypeEnum) {
+            case FAILMETHOD:
+                methodName = disLock.failMethod();
+                break;
+            case LOCKMETHOD:
+                methodName = disLock.lockMethod();
+                break;
+            case FINSHEDMETHOD:
+                methodName = disLock.finshedMethod();
+                break;
+            default:
+        }
+        if (StringUtils.hasText(methodName)) {
+            try {
+                Method method = pjp.getTarget().getClass().getMethod(methodName, disLockMethod.getParameterTypes());
+                method.invoke(FactoryBuilder.factoryOf(pjp.getTarget().getClass()).getInstance(), pjp.getArgs());
+            } catch (Exception e) {
+                e.getStackTrace();
+            }
+        }
+    }
 }
