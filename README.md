@@ -1,8 +1,8 @@
 
-###1.0.1版本
-#####功能
+#1.0.1版本
+##功能
 可以通过在方法上添加 *@DisLock* 这个注解来使用分布式锁，可以减少开发成本.
-#####使用方法
+###使用方法
 
 在你需要加分布式锁的方法上加上@DisLock
 
@@ -12,7 +12,7 @@
 
 要求方法都在同一个类中，且，方法参数与被加锁的方法一致
 
-######maven： 
+###maven： 
 ```
 <dependency>
    <groupId>com.github.rogerjobluo</groupId>
@@ -22,15 +22,15 @@
  </dependency>
 ```
 
-######gradle
+###gradle
 ```
 dependency("com.github.rogerjobluo:distributed-lock:1.0.1-SNAPSHOT")
 compile('com.github.rogerjobluo:distributed-lock')
 ```
-#####配置
+##配置
 由于初版目前依赖于spring-integrated的lockRegistry，所以需要使用spring-integrated关于lockRegistry的配置，
 额外的需要配置lockAspect disLockConfigurater springPostProcessor
-######xml
+###xml
 ```
 <bean id="disLockConfigurater" class="cn.roger.distributed.lock.spring.SpringDisLockConfigurater"
            init-method="init">
@@ -43,7 +43,7 @@ compile('com.github.rogerjobluo:distributed-lock')
 
 ```
 
-######java
+###java
 
 ```
 @Bean
