@@ -22,16 +22,15 @@ maven：
 ```
 <dependency>
    <groupId>com.github.rogerjobluo</groupId>
-   <artifactId>distributed-lock</artifactId>
+   <artifactId>distributed-lock-spring</artifactId>
    <version>1.0.1-SNAPSHOT</version>
-   <type>pom</type>
  </dependency>
 ```
 
 gradle
 
 ```
-dependency("com.github.rogerjobluo:distributed-lock:1.0.1-SNAPSHOT")
+dependency("com.github.rogerjobluo:distributed-lock-spring:1.0.1-SNAPSHOT")
 compile('com.github.rogerjobluo:distributed-lock')
 ```
 
