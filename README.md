@@ -11,7 +11,7 @@
 
 在你需要加分布式锁的方法上加上@DisLock
 
-@DisLock目前支持三个参数lockMethod   failMethod   finshedMethod
+@DisLock目前支持三个参数lockMethod   failMethod   finishedMethod
 
 可以分别赋值你 获得锁  加锁失败 释放锁 需要调用的方法的方法名 
 

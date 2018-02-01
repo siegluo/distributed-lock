@@ -34,5 +34,5 @@ public @interface DisLock {
     /**
      * 获得锁失败时需要执行的方法， 需要在同一个类中声明自定义获得锁的方法名, 无返回值, 可不传
      */
-    String finshedMethod() default "";
+    String finishedMethod() default "";
 }

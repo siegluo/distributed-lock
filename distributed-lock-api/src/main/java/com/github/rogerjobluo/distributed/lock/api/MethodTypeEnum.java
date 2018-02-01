@@ -10,7 +10,7 @@ public enum MethodTypeEnum {
     /**
      *
      */
-    FINSHEDMETHOD("FINSHEDMETHOD"),
+    FINISHEDMETHOD("FINISHEDMETHOD"),
 
     /**
      *

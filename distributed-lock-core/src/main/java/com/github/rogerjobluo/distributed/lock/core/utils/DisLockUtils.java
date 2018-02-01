@@ -65,7 +65,7 @@ public class DisLockUtils {
      * @author Roger
      * @date 18-1-20 上午11:29
      */
-    public static void invok(ProceedingJoinPoint pjp, MethodTypeEnum methodTypeEnum) {
+    public static void invoke(ProceedingJoinPoint pjp, MethodTypeEnum methodTypeEnum) {
         Method disLockMethod = DisLockUtils.getDisLockMethod(pjp);
         DisLock disLock = disLockMethod.getAnnotation(DisLock.class);
         String methodName = null;
@@ -76,8 +76,8 @@ public class DisLockUtils {
             case LOCKMETHOD:
                 methodName = disLock.lockMethod();
                 break;
-            case FINSHEDMETHOD:
-                methodName = disLock.finshedMethod();
+            case FINISHEDMETHOD:
+                methodName = disLock.finishedMethod();
                 break;
             default:
         }

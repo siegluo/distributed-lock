@@ -75,7 +75,7 @@ public class DisLockInterceptor {
     }
 
     /**
-     * 获得锁，释放锁，目前使用的是spirng-integration中的zk锁
+     * 获得锁，释放锁，目前使用的是spring-integration中的zk锁
      *
      * @author Roger
      * @date 18-1-20 上午11:46
@@ -87,7 +87,7 @@ public class DisLockInterceptor {
         try {
             if (!lock.tryLock(waitLockTime, TimeUnit.MILLISECONDS)) {
                 logger.info("加锁失败，任务中止");
-                DisLockUtils.invok(pjp, MethodTypeEnum.FAILMETHOD);
+                DisLockUtils.invoke(pjp, MethodTypeEnum.FAILMETHOD);
                 return null;
             }
         } catch (InterruptedException e) {
@@ -101,7 +101,7 @@ public class DisLockInterceptor {
             logger.warning("执行任务时出现异常，将终止:" + e.getMessage());
         } finally {
             disLockManager.unlock(lock);
-            DisLockUtils.invok(pjp, MethodTypeEnum.FINSHEDMETHOD);
+            DisLockUtils.invoke(pjp, MethodTypeEnum.FINISHEDMETHOD);
         }
         return null;
     }
