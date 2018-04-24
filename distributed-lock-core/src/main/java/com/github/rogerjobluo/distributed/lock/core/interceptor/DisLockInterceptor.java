@@ -58,8 +58,8 @@ public class DisLockInterceptor {
         String className = pjp.getTarget().getClass().getName();
         String path = className + methodName;
         long waitLockTime = disLockConfigurater.getDisLockConfig().getWaitLockTime();
-        lockAndExec(path, waitLockTime, pjp);
-        return pjp.proceed();
+
+        return lockAndExec(path, waitLockTime, pjp);
     }
 
     public Object parameterProceed(ProceedingJoinPoint pjp) throws Throwable {

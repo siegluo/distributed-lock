@@ -402,14 +402,16 @@
     <!--</pluginRepositories>-->
     <distributionManagement>
         <repository>
-            <id>osser</id>
+            <id>com.github.rogerjobluo</id>
             <name>Maven Central Staging Repository</name>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+            <url>http://mvn.kingsilk.xyz/content/repositories/releases/</url>
+            <!--<url>/Users/roger/.m2/repository/</url>-->
         </repository>
 
         <snapshotRepository>
-            <id>osser</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+            <id>com.github.rogerjobluo</id>
+            <url>http://mvn.kingsilk.xyz/content/repositories/snapshots/</url>
+            <!--<url>/Users/roger/.m2/repository/</url>-->
         </snapshotRepository>
 
     </distributionManagement>
