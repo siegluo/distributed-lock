@@ -1,0 +1,4 @@
+# Auto Configure
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+    cn.roger.distributed.lock.spring.LockManagerAutoConfiguration,\
+        cn.roger.distributed.lock.spring.RedisLockManagerAutoConfiguration

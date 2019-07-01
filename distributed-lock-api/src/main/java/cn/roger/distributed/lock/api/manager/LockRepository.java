@@ -1,8 +1,8 @@
-package cn.roger.distributed.lock.core.repository;
+package cn.roger.distributed.lock.api.manager;
 
 import java.util.concurrent.locks.Lock;
 
-public interface DisLockRepository {
+public interface LockRepository {
 
     /**
      * 新增path
