@@ -1,14 +1,18 @@
 package cn.roger.distributed.lock.api.manager;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReadWriteLock;
 
 
 public abstract class AbstractLockManager implements LockManager {
-    private final Map<String, Lock> lockStore          = new HashMap<>(128);
-    private final Map<String, ReadWriteLock> readWriteLockStore = new HashMap<>(128);
+
+    private static final String DEFAULT_ROOT = "/Distributed-Lock/";
+    private final boolean trackingTime = false;
+
+    private final Map<String, Lock> lockStore = new ConcurrentHashMap<>(128);
+    private final Map<String, ReadWriteLock> readWriteLockStore = new ConcurrentHashMap<>(128);
 
     @Override
     public Lock getLock(String lockName) {
@@ -16,9 +20,7 @@ public abstract class AbstractLockManager implements LockManager {
         if (lock != null) {
             return lock;
         }
-        synchronized (lockStore) {
-            return lockStore.computeIfAbsent(lockName, this::createLock);
-        }
+        return lockStore.computeIfAbsent(lockName, this::createLock);
     }
 
     @Override
@@ -27,9 +29,7 @@ public abstract class AbstractLockManager implements LockManager {
         if (lock != null) {
             return lock;
         }
-        synchronized (readWriteLockStore) {
-            return readWriteLockStore.computeIfAbsent(lockName, this::createReadWriteLock);
-        }
+        return readWriteLockStore.computeIfAbsent(lockName, this::createReadWriteLock);
     }
 
     protected abstract Lock createLock(String lockName);

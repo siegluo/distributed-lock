@@ -67,7 +67,6 @@ public interface MethodInterceptorContext extends Serializable {
      * 获取全部参数
      *
      * @return 参数集合
-     * @see this#getParameter(String)
      */
     Map<String, Object> getParams();
 
