@@ -1,0 +1,29 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "cn.roger.distributed.lock.zookeeper.starter.ZookeeperLockProperties",
+      "name": "distributed.lock.zk",
+      "type": "cn.roger.distributed.lock.zookeeper.starter.ZookeeperLockProperties"
+    },
+    {
+      "sourceType": "cn.roger.distributed.lock.zookeeper.starter.ZookeeperLockProperties",
+      "name": "distributed.lock.zk.zookeeper-client-config",
+      "sourceMethod": "getZookeeperClientConfig()",
+      "type": "cn.roger.distributed.lock.zookeeper.starter.ZookeeperLockProperties$ZookeeperClientConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "cn.roger.distributed.lock.zookeeper.starter.ZookeeperLockProperties$ZookeeperClientConfig",
+      "defaultValue": 0,
+      "name": "distributed.lock.zk.zookeeper-client-config.session-timeout",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.roger.distributed.lock.zookeeper.starter.ZookeeperLockProperties$ZookeeperClientConfig",
+      "name": "distributed.lock.zk.zookeeper-client-config.urls",
+      "type": "java.lang.String"
+    }
+  ]
+}

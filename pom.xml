@@ -7,31 +7,31 @@
     <groupId>com.github.rogerjobluo</groupId>
     <artifactId>distributed-lock</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.0-SNAPSHOT</version>
     <modules>
         <module>distributed-lock-api</module>
         <module>distributed-lock-core</module>
-        <module>distributed-lock-spring</module>
+        <module>distributed-lock-redis</module>
+        <module>distributed-lock-redis-starter</module>
+        <module>distributed-lock-zookeeper</module>
+        <module>distributed-lock-etcd</module>
+        <module>distributed-lock-zookeeper-starter</module>
     </modules>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.3.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
     <properties>
-        <springframework.version>3.2.12.RELEASE</springframework.version>
-
-        <java.src.version>1.7</java.src.version>
-        <java.target.version>1.7</java.target.version>
+        <springframework.version>5.0.2.RELEASE</springframework.version>
+        <java.src.version>1.8</java.src.version>
+        <java.target.version>1.8</java.target.version>
         <project.encoding>UTF-8</project.encoding>
-
-        <!--<repo.internal.snapshots.url>https://oss.sonatype.org/service/local/staging/deploy/maven2/-->
-        <!--</repo.internal.snapshots.url>-->
-        <!--<repo.internal.releases.url>https://oss.sonatype.org/content/repositories/snapshots/-->
-        <!--</repo.internal.releases.url>-->
-        <!--<repo.proxy.url>http://repo1.maven.org/maven2</repo.proxy.url>-->
-
-        <!--<repo.external.url>http://repo1.maven.org/maven2</repo.external.url>-->
-
     </properties>
     <name>${project.groupId}:${project.artifactId}</name>
     <url>https://github.com/rogerjobluo/distributed-lock</url>
-    <description></description>
+    <description>分布式锁注解</description>
 
     <licenses>
         <license>
@@ -69,99 +69,6 @@
                 <version>${project.version}</version>
             </dependency>
 
-            <!--<dependency>-->
-            <!--<groupId>org.quartz-scheduler</groupId>-->
-            <!--<artifactId>quartz</artifactId>-->
-            <!--<version>2.2.1</version>-->
-            <!--<exclusions>-->
-            <!--<exclusion>-->
-            <!--<groupId>c3p0</groupId>-->
-            <!--<artifactId>c3p0</artifactId>-->
-            <!--</exclusion>-->
-            <!--</exclusions>-->
-
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>com.esotericsoftware</groupId>-->
-            <!--<artifactId>kryo</artifactId>-->
-            <!--<version>4.0.0</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>com.google.guava</groupId>-->
-            <!--<artifactId>guava</artifactId>-->
-            <!--<version>19.0</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>com.mchange</groupId>-->
-            <!--<artifactId>c3p0</artifactId>-->
-            <!--<version>0.9.5-pre10</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-            <!--<version>5.1.33</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>commons-dbcp</groupId>-->
-            <!--<artifactId>commons-dbcp</artifactId>-->
-            <!--<version>1.4</version>-->
-            <!--</dependency>-->
-
-            <dependency>
-                <groupId>com.alibaba</groupId>
-                <artifactId>fastjson</artifactId>
-                <version>1.2.29</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.5.0</version>
-            </dependency>
-
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.11</version>
-                <scope>test</scope>
-            </dependency>
-
-
-            <dependency>
-                <groupId>log4j</groupId>
-                <artifactId>log4j</artifactId>
-                <version>1.2.17</version>
-            </dependency>
-
-            <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-web</artifactId>-->
-            <!--<version>${springframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>org.mybatis</groupId>-->
-            <!--<artifactId>mybatis-spring</artifactId>-->
-            <!--<version>1.2.2</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>org.mybatis</groupId>-->
-            <!--<artifactId>mybatis</artifactId>-->
-            <!--<version>3.2.8</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-webmvc</artifactId>-->
-            <!--<version>${springframework.version}</version>-->
-            <!--</dependency>-->
-
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context-support</artifactId>
@@ -176,30 +83,8 @@
 
             <dependency>
                 <groupId>org.springframework</groupId>
-                <artifactId>spring-tx</artifactId>
-                <version>${springframework.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${springframework.version}</version>
-            </dependency>
-
-            <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-jdbc</artifactId>-->
-            <!--<version>${springframework.version}</version>-->
-            <!--</dependency>-->
-            <dependency>
-                <groupId>org.springframework.integration</groupId>
-                <artifactId>spring-integration-core</artifactId>
-                <version>5.0.0.RELEASE</version>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.integration</groupId>
-                <artifactId>spring-integration-zookeeper</artifactId>
-                <version>5.0.0.RELEASE</version>
             </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
@@ -207,28 +92,10 @@
                 <version>${springframework.version}</version>
             </dependency>
 
-            <!--<dependency>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--<artifactId>spring-test</artifactId>-->
-            <!--<version>${springframework.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>org.freemarker</groupId>-->
-            <!--<artifactId>freemarker</artifactId>-->
-            <!--<version>2.3.21</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>org.sitemesh</groupId>-->
-            <!--<artifactId>sitemesh</artifactId>-->
-            <!--<version>3.0.0</version>-->
-            <!--</dependency>-->
-
             <dependency>
-                <groupId>aopalliance</groupId>
-                <artifactId>aopalliance</artifactId>
-                <version>1.0</version>
+                <groupId>org.springframework</groupId>
+                <artifactId>spring-test</artifactId>
+                <version>${springframework.version}</version>
             </dependency>
 
             <dependency>
@@ -256,165 +123,89 @@
             </dependency>
 
             <dependency>
-                <groupId>org.apache.httpcomponents</groupId>
-                <artifactId>httpclient</artifactId>
-                <version>4.5.3</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-httpclient</groupId>
-                <artifactId>commons-httpclient</artifactId>
-                <version>3.1</version>
-            </dependency>
-
-            <dependency>
-                <groupId>commons-codec</groupId>
-                <artifactId>commons-codec</artifactId>
-                <version>1.10</version>
-            </dependency>
-
-            <!--<dependency>-->
-            <!--<groupId>com.alibaba</groupId>-->
-            <!--<artifactId>dubbo</artifactId>-->
-            <!--<version>2.5.3</version>-->
-            <!--<exclusions>-->
-            <!--<exclusion>-->
-            <!--<artifactId>spring</artifactId>-->
-            <!--<groupId>org.springframework</groupId>-->
-            <!--</exclusion>-->
-            <!--</exclusions>-->
-            <!--</dependency>-->
-
-            <dependency>
                 <groupId>org.apache.commons</groupId>
                 <artifactId>commons-lang3</artifactId>
                 <version>3.2.1</version>
             </dependency>
 
-            <!--<dependency>-->
-            <!--<groupId>org.apache.zookeeper</groupId>-->
-            <!--<artifactId>zookeeper</artifactId>-->
-            <!--<version>3.4.6</version>-->
-            <!--<scope>compile</scope>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>redis.clients</groupId>-->
-            <!--<artifactId>jedis</artifactId>-->
-            <!--<version>2.8.0</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-            <!--<groupId>org.apache.thrift</groupId>-->
-            <!--<artifactId>libthrift</artifactId>-->
-            <!--<version>0.9.2-MOD-2</version>-->
-            <!--</dependency>-->
             <dependency>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-idea-plugin</artifactId>
-                <version>2.2.1</version>
+                <groupId>org.apache.zookeeper</groupId>
+                <artifactId>zookeeper</artifactId>
+                <version>3.4.6</version>
+                <scope>compile</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>redis.clients</groupId>
+                <artifactId>jedis</artifactId>
+                <version>2.8.0</version>
             </dependency>
 
         </dependencies>
     </dependencyManagement>
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <distributionManagement>
+                <repository>
+                    <id>com.github.rogerjobluo</id>
+                    <name>Maven Central Staging Repository</name>
+                    <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+                </repository>
 
-    <!--<repositories>-->
-    <!--<repository>-->
-    <!--<id>distributed-lock-internal-snapshots</id>-->
-    <!--<name>internal repository for snapshots artifacts</name>-->
-    <!--<url>${repo.internal.snapshots.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>true</enabled>-->
-    <!--</snapshots>-->
-    <!--<releases>-->
-    <!--<enabled>false</enabled>-->
-    <!--</releases>-->
-    <!--</repository>-->
-    <!--<repository>-->
-    <!--<id>distributed-lock-internal-releases</id>-->
-    <!--<name>internal repository for released artifacts</name>-->
-    <!--<url>${repo.internal.releases.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>false</enabled>-->
-    <!--</snapshots>-->
-    <!--<releases>-->
-    <!--<enabled>true</enabled>-->
-    <!--</releases>-->
-    <!--</repository>-->
-    <!--&lt;!&ndash; no snapshot allowed for external repositories! &ndash;&gt;-->
-    <!--<repository>-->
-    <!--<id>distributed-lock-third-party</id>-->
-    <!--<name>cache server for external repositories</name>-->
-    <!--<url>${repo.external.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>false</enabled>-->
-    <!--</snapshots>-->
-    <!--</repository>-->
-    <!--<repository>-->
-    <!--<id>central</id>-->
-    <!--<name>proxy server for external repositories</name>-->
-    <!--<url>${repo.proxy.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>false</enabled>-->
-    <!--</snapshots>-->
-    <!--</repository>-->
-    <!--</repositories>-->
-    <!--<pluginRepositories>-->
-    <!--<pluginRepository>-->
-    <!--<id>distributed-lock-internal-snapshots</id>-->
-    <!--<name>internal repository for snapshots artifacts</name>-->
-    <!--<url>${repo.internal.snapshots.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>true</enabled>-->
-    <!--</snapshots>-->
-    <!--<releases>-->
-    <!--<enabled>false</enabled>-->
-    <!--</releases>-->
-    <!--</pluginRepository>-->
-    <!--<pluginRepository>-->
-    <!--<id>distributed-lock-internal-releases</id>-->
-    <!--<name>internal repository for released artifacts</name>-->
-    <!--<url>${repo.internal.releases.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>false</enabled>-->
-    <!--</snapshots>-->
-    <!--<releases>-->
-    <!--<enabled>true</enabled>-->
-    <!--</releases>-->
-    <!--</pluginRepository>-->
-    <!--&lt;!&ndash; no snapshot allowed for external repositories &ndash;&gt;-->
-    <!--<pluginRepository>-->
-    <!--<id>distributed-lock-central-cache</id>-->
-    <!--<name>cache to external repositories</name>-->
-    <!--<url>${repo.external.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>false</enabled>-->
-    <!--</snapshots>-->
-    <!--</pluginRepository>-->
-    <!--<pluginRepository>-->
-    <!--<id>central</id>-->
-    <!--<name>Platform proxy to external repositories</name>-->
-    <!--<url>${repo.proxy.url}</url>-->
-    <!--<snapshots>-->
-    <!--<enabled>false</enabled>-->
-    <!--</snapshots>-->
-    <!--</pluginRepository>-->
-    <!--</pluginRepositories>-->
-    <distributionManagement>
-        <repository>
-            <id>com.github.rogerjobluo</id>
-            <name>Maven Central Staging Repository</name>
-            <url>http://mvn.kingsilk.xyz/content/repositories/releases/</url>
-            <!--<url>/Users/roger/.m2/repository/</url>-->
-        </repository>
+                <snapshotRepository>
+                    <id>com.github.rogerjobluo</id>
+                    <url>file:///home/ks/.m2/repository/</url>
+                </snapshotRepository>
+            </distributionManagement>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                        <version>1.6.3</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <serverId>com.github.rogerjobluo</serverId>
+                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-eclipse-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <workspace>${basedir}</workspace>
+                            <workspaceCodeStylesURL>
+                                http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml
+                            </workspaceCodeStylesURL>
+                            <downloadSources>true</downloadSources>
+                            <downloadJavadocs>false</downloadJavadocs>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                        <version>1.6</version>
+                        <executions>
+                            <execution>
+                                <id>sign-artifacts</id>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 
-        <snapshotRepository>
-            <id>com.github.rogerjobluo</id>
-            <url>http://mvn.kingsilk.xyz/content/repositories/snapshots/</url>
-            <!--<url>/Users/roger/.m2/repository/</url>-->
-        </snapshotRepository>
-
-    </distributionManagement>
     <build>
         <resources>
             <resource>
@@ -429,17 +220,6 @@
             </testResource>
         </testResources>
         <plugins>
-            <plugin>
-                <groupId>org.sonatype.plugins</groupId>
-                <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>1.6.3</version>
-                <extensions>true</extensions>
-                <configuration>
-                    <serverId>osser</serverId>
-                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
@@ -458,19 +238,7 @@
                     <encoding>${project.encoding}</encoding>
                 </configuration>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-eclipse-plugin</artifactId>
-                <version>2.6</version>
-                <configuration>
-                    <workspace>${basedir}</workspace>
-                    <workspaceCodeStylesURL>
-                        http://svn.apache.org/repos/asf/maven/plugins/trunk/maven-eclipse-plugin/src/optional/eclipse-config/maven-styles.xml
-                    </workspaceCodeStylesURL>
-                    <downloadSources>true</downloadSources>
-                    <downloadJavadocs>false</downloadJavadocs>
-                </configuration>
-            </plugin>
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
@@ -492,62 +260,20 @@
                     <updateReleaseInfo>true</updateReleaseInfo>
                 </configuration>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-javadoc-plugin</artifactId>-->
-                <!--<version>2.10.3</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>attach-javadocs</id>-->
-                        <!--<goals>-->
-                            <!--<goal>jar</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.3</version>
                 <executions>
                     <execution>
-                        <id>attach-sources</id>
+                        <id>attach-javadocs</id>
                         <goals>
-                            <goal>jar-no-fork</goal>
+                            <goal>jar</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
-            <!--<plugin>-->
-                <!--<groupId>org.apache.maven.plugins</groupId>-->
-                <!--<artifactId>maven-gpg-plugin</artifactId>-->
-                <!--<version>1.6</version>-->
-                <!--<executions>-->
-                    <!--<execution>-->
-                        <!--<id>sign-artifacts</id>-->
-                        <!--<phase>verify</phase>-->
-                        <!--<goals>-->
-                            <!--<goal>sign</goal>-->
-                        <!--</goals>-->
-                    <!--</execution>-->
-                <!--</executions>-->
-            <!--</plugin>-->
 
         </plugins>
-
     </build>
-
-    <!--<distributionManagement>-->
-    <!--<repository>-->
-    <!--<id>repo.releases</id>-->
-    <!--<name>internal corporate repository</name>-->
-    <!--<url>${repo.internal.releases.url}</url>-->
-    <!--</repository>-->
-    <!--<snapshotRepository>-->
-    <!--<id>repo.snapshots</id>-->
-    <!--<name>internal corporate snapshots repository</name>-->
-    <!--<url>${repo.internal.snapshots.url}</url>-->
-    <!--</snapshotRepository>-->
-    <!--</distributionManagement>-->
-
-
 </project>
