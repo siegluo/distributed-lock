@@ -9,25 +9,22 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>distributed-lock-core</artifactId>
-
+    <artifactId>distributed-lock-zookeeper-starter</artifactId>
     <dependencies>
-
         <dependency>
             <groupId>com.github.rogerjobluo</groupId>
-            <artifactId>distributed-lock-api</artifactId>
+            <artifactId>distributed-lock-zookeeper</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-
         <dependency>
-            <groupId>org.aspectj</groupId>
-            <artifactId>aspectjweaver</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
         </dependency>
-
         <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
         </dependency>
-
     </dependencies>
+
 </project>

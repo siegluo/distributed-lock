@@ -1,0 +1,112 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "cn.roger.distributed.lock.redis.starter.RedisLockProperties",
+      "name": "distributed.lock.redis",
+      "type": "cn.roger.distributed.lock.redis.starter.RedisLockProperties"
+    },
+    {
+      "sourceType": "cn.roger.distributed.lock.redis.starter.RedisLockProperties",
+      "name": "distributed.lock.redis.cluster-servers-config",
+      "sourceMethod": "getClusterServersConfig()",
+      "type": "org.redisson.config.ClusterServersConfig"
+    },
+    {
+      "sourceType": "cn.roger.distributed.lock.redis.starter.RedisLockProperties",
+      "name": "distributed.lock.redis.master-slave-servers-config",
+      "sourceMethod": "getMasterSlaveServersConfig()",
+      "type": "org.redisson.config.MasterSlaveServersConfig"
+    },
+    {
+      "sourceType": "cn.roger.distributed.lock.redis.starter.RedisLockProperties",
+      "name": "distributed.lock.redis.replicated-servers-config",
+      "sourceMethod": "getReplicatedServersConfig()",
+      "type": "org.redisson.config.ReplicatedServersConfig"
+    },
+    {
+      "sourceType": "cn.roger.distributed.lock.redis.starter.RedisLockProperties",
+      "name": "distributed.lock.redis.single-server-config",
+      "sourceMethod": "getSingleServerConfig()",
+      "type": "org.redisson.config.SingleServerConfig"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "org.redisson.config.ClusterServersConfig",
+      "name": "distributed.lock.redis.cluster-servers-config.node-addresses",
+      "type": "java.util.List<java.net.URI>"
+    },
+    {
+      "sourceType": "org.redisson.config.ClusterServersConfig",
+      "name": "distributed.lock.redis.cluster-servers-config.scan-interval",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.MasterSlaveServersConfig",
+      "name": "distributed.lock.redis.master-slave-servers-config.database",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.MasterSlaveServersConfig",
+      "name": "distributed.lock.redis.master-slave-servers-config.master-address",
+      "type": "java.net.URI"
+    },
+    {
+      "sourceType": "org.redisson.config.MasterSlaveServersConfig",
+      "name": "distributed.lock.redis.master-slave-servers-config.slave-addresses",
+      "type": "java.util.Set<java.net.URI>"
+    },
+    {
+      "sourceType": "org.redisson.config.ReplicatedServersConfig",
+      "name": "distributed.lock.redis.replicated-servers-config.database",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.ReplicatedServersConfig",
+      "name": "distributed.lock.redis.replicated-servers-config.node-addresses",
+      "type": "java.util.List<java.net.URI>"
+    },
+    {
+      "sourceType": "org.redisson.config.ReplicatedServersConfig",
+      "name": "distributed.lock.redis.replicated-servers-config.scan-interval",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.SingleServerConfig",
+      "name": "distributed.lock.redis.single-server-config.connection-minimum-idle-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.SingleServerConfig",
+      "name": "distributed.lock.redis.single-server-config.connection-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.SingleServerConfig",
+      "name": "distributed.lock.redis.single-server-config.database",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.SingleServerConfig",
+      "name": "distributed.lock.redis.single-server-config.dns-monitoring-interval",
+      "type": "java.lang.Long"
+    },
+    {
+      "sourceType": "org.redisson.config.SingleServerConfig",
+      "name": "distributed.lock.redis.single-server-config.subscription-connection-minimum-idle-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "org.redisson.config.SingleServerConfig",
+      "name": "distributed.lock.redis.single-server-config.subscription-connection-pool-size",
+      "type": "java.lang.Integer"
+    },
+    {
+      "sourceType": "cn.roger.distributed.lock.redis.starter.RedisLockProperties",
+      "defaultValue": "single",
+      "name": "distributed.lock.redis.type",
+      "type": "java.lang.String"
+    }
+  ]
+}

@@ -1,4 +1,4 @@
-package cn.roger.distributed.lock.spring;
+package cn.roger.distributed.lock.zookeeper.starter;
 
 import cn.roger.distributed.lock.api.manager.LockManager;
 import cn.roger.distributed.lock.core.manager.AopLockAdvisor;
